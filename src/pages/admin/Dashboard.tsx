@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
@@ -30,12 +29,13 @@ import {
   Filter, 
   MapPin, 
   MoreHorizontal,
-  Users
+  Users,
+  FlameIcon as Fire,
+  AlarmClockIcon as Alarm
 } from "lucide-react";
 import { useDisasterReports } from "@/contexts/DisasterReportContext";
 import { DisasterReport } from "@/lib/types";
 
-// Helper function to format date
 const formatDate = (date: Date): string => {
   return new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
@@ -46,7 +46,6 @@ const formatDate = (date: Date): string => {
   }).format(date);
 };
 
-// Status Badge component
 const StatusBadge = ({ status }: { status: string }) => {
   switch (status) {
     case 'pending':
@@ -72,7 +71,6 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [filteredReports, setFilteredReports] = useState<DisasterReport[]>([]);
   
-  // Stats
   const [stats, setStats] = useState({
     total: 0,
     pending: 0,
@@ -82,7 +80,6 @@ const AdminDashboard = () => {
     byType: [] as {name: string, value: number}[]
   });
   
-  // Update stats when reports change
   useEffect(() => {
     if (reports.length > 0) {
       const pending = reports.filter(report => report.status === 'pending').length;
@@ -92,7 +89,6 @@ const AdminDashboard = () => {
       ).length;
       const resolved = reports.filter(report => report.status === 'resolved').length;
       
-      // Count by disaster type
       const typeMap = new Map<string, number>();
       reports.forEach(report => {
         const count = typeMap.get(report.disasterType) || 0;
@@ -114,7 +110,6 @@ const AdminDashboard = () => {
     }
   }, [reports]);
   
-  // Filter reports based on active tab
   useEffect(() => {
     if (reports.length > 0) {
       let filtered;
@@ -138,7 +133,6 @@ const AdminDashboard = () => {
           filtered = [...reports];
       }
       
-      // Sort by newest first
       filtered.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
       
       setFilteredReports(filtered);
@@ -168,7 +162,6 @@ const AdminDashboard = () => {
     }
   };
   
-  // Colors for pie chart
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
   
   if (loading) {
@@ -183,7 +176,6 @@ const AdminDashboard = () => {
   
   return (
     <DashboardLayout title="Admin Dashboard">
-      {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <Card>
           <CardHeader className="pb-2">
@@ -225,7 +217,6 @@ const AdminDashboard = () => {
         </Card>
       </div>
       
-      {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <Card>
           <CardHeader>
@@ -300,7 +291,6 @@ const AdminDashboard = () => {
         </Card>
       </div>
       
-      {/* Report Tabs */}
       <Card className="mt-8">
         <CardHeader>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -336,14 +326,13 @@ const AdminDashboard = () => {
               {filteredReports.length > 0 ? (
                 <div className="space-y-4">
                   {filteredReports.map((report) => (
-                    <Card key={report.id}>
+                    <Card key={report.id} className="hover:shadow-md transition-shadow">
                       <CardHeader className="pb-2">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                           <div className="flex items-center gap-2">
                             {report.disasterType === 'fire' && <Fire className="h-5 w-5 text-red-500" />}
                             {report.disasterType === 'flood' && <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5.34a2 2 0 0 1 .23-.9l6-10.94a2 2 0 0 1 3.54 0l6 10.94a2 2 0 0 1 .23.9z"/><path d="M4.34 15h15.32"/></svg>}
                             {report.disasterType === 'earthquake' && <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m2 12 6-6v4h8V6l6 6-6 6v-4H8v4l-6-6Z"/></svg>}
-                            {/* Add more disaster type icons as needed */}
                             <h3 className="text-lg font-semibold capitalize">{report.disasterType} Incident</h3>
                             <StatusBadge status={report.status} />
                           </div>
@@ -372,7 +361,7 @@ const AdminDashboard = () => {
                       </CardContent>
                       <CardFooter className="flex justify-between">
                         <Link to={`/admin/report/${report.id}`}>
-                          <Button variant="outline" size="sm">View Details</Button>
+                          <Button variant="outline" size="sm" className="hover:bg-primary/10 transition-colors">View Details</Button>
                         </Link>
                         
                         <div className="flex items-center gap-2">
@@ -396,7 +385,7 @@ const AdminDashboard = () => {
                           )}
                           
                           {report.status !== 'pending' && (
-                            <Button variant="ghost" size="sm">
+                            <Button variant="ghost" size="sm" className="hover:bg-primary/5 transition-colors">
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           )}
@@ -406,7 +395,7 @@ const AdminDashboard = () => {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 border rounded-lg bg-slate-50">
+                <div className="text-center py-8 border rounded-lg bg-slate-50 animate-fade-in">
                   <FileText className="h-10 w-10 text-muted-foreground mx-auto mb-3" />
                   <h3 className="text-lg font-medium">No reports found</h3>
                   <p className="text-muted-foreground mt-1">

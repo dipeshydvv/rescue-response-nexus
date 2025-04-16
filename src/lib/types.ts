@@ -8,6 +8,9 @@ export type DisasterType =
   | 'hurricane'
   | 'tsunami'
   | 'landslide'
+  | 'chemical'
+  | 'biological'
+  | 'nuclear'
   | 'other';
 
 export type ReportStatus = 
@@ -28,6 +31,12 @@ export interface User {
   email: string;
   role: 'admin' | 'volunteer' | 'ndrf';
   phone?: string;
+  profileImageUrl?: string;
+  createdAt?: Date;
+  lastLogin?: Date;
+  location?: string;
+  specialization?: string;
+  certifications?: string[];
 }
 
 export interface DisasterReport {
@@ -43,6 +52,13 @@ export interface DisasterReport {
   updatedAt: Date;
   notes?: string[];
   responseImages?: string[];
+  severity?: 'low' | 'medium' | 'high' | 'critical';
+  affectedArea?: string;
+  estimatedPeopleAffected?: number;
+  resourcesNeeded?: string[];
+  contactInfo?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface ResponseNote {
@@ -52,4 +68,41 @@ export interface ResponseNote {
   userName: string;
   text: string;
   timestamp: Date;
+  imageUrl?: string;
+  actionTaken?: string;
+  status?: ReportStatus;
+}
+
+export interface ResourceRequest {
+  id: string;
+  reportId: string;
+  resourceType: string;
+  quantity: number;
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  status: 'pending' | 'approved' | 'dispatched' | 'delivered';
+  requestedBy: string;
+  approvedBy?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  notes?: string;
+}
+
+export interface EmergencyContact {
+  id: string;
+  name: string;
+  phone: string;
+  organization: string;
+  role: string;
+  location: string;
+  isActive: boolean;
+}
+
+export interface DisasterStatistics {
+  totalReports: number;
+  pendingReports: number;
+  resolvedReports: number;
+  disastersByType: Record<DisasterType, number>;
+  disastersByStatus: Record<ReportStatus, number>;
+  averageResolutionTime: number; // in hours
+  activeResponders: number;
 }
