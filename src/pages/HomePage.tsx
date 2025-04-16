@@ -3,12 +3,13 @@ import NavbarLayout from "@/components/layouts/NavbarLayout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { LifeBuoy, AlertTriangle, Users, Shield, ArrowRight } from "lucide-react";
+import BackToTop from "@/components/ui/back-to-top";
 
 const HomePage = () => {
   return (
     <NavbarLayout>
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary to-primary-700 text-white py-16 px-4 rounded-lg mb-12">
+      <div className="bg-gradient-to-r from-primary to-primary-700 text-white py-16 px-4 rounded-lg mb-12 shadow-lg animate-fade-in">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Disaster Response Nexus</h1>
           <p className="text-xl mb-8">
@@ -17,13 +18,13 @@ const HomePage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/report">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto">
+              <Button size="lg" variant="secondary" className="w-full sm:w-auto btn-hover">
                 <AlertTriangle className="mr-2 h-5 w-5" />
                 Report a Disaster
               </Button>
             </Link>
             <Link to="/register">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto btn-hover">
                 <Users className="mr-2 h-5 w-5" />
                 Volunteer Registration
               </Button>
@@ -38,7 +39,7 @@ const HomePage = () => {
         
         <div className="grid md:grid-cols-3 gap-8">
           {/* Report & Admin Portal */}
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow animate-zoom-in card-hover">
             <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
               <AlertTriangle className="h-6 w-6 text-red-600" />
             </div>
@@ -73,13 +74,14 @@ const HomePage = () => {
                 <span className="text-sm">Status tracking</span>
               </li>
             </ul>
-            <Link to="/report" className="text-primary hover:text-primary-700 font-medium flex items-center">
-              Report a Disaster <ArrowRight className="ml-1 h-4 w-4" />
+            <Link to="/report" className="text-primary hover:text-primary-700 font-medium flex items-center group">
+              Report a Disaster 
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
 
           {/* Volunteer Portal */}
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow animate-zoom-in card-hover" style={{animationDelay: '0.1s'}}>
             <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
               <Users className="h-6 w-6 text-blue-600" />
             </div>
@@ -114,13 +116,14 @@ const HomePage = () => {
                 <span className="text-sm">NDRF coordination</span>
               </li>
             </ul>
-            <Link to="/register" className="text-primary hover:text-primary-700 font-medium flex items-center">
-              Register as Volunteer <ArrowRight className="ml-1 h-4 w-4" />
+            <Link to="/register" className="text-primary hover:text-primary-700 font-medium flex items-center group">
+              Register as Volunteer 
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
 
           {/* NDRF Base Portal */}
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow animate-zoom-in card-hover" style={{animationDelay: '0.2s'}}>
             <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
               <Shield className="h-6 w-6 text-green-600" />
             </div>
@@ -155,20 +158,21 @@ const HomePage = () => {
                 <span className="text-sm">Documentation system</span>
               </li>
             </ul>
-            <Link to="/login" className="text-primary hover:text-primary-700 font-medium flex items-center">
-              NDRF Login <ArrowRight className="ml-1 h-4 w-4" />
+            <Link to="/login" className="text-primary hover:text-primary-700 font-medium flex items-center group">
+              NDRF Login 
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
       </div>
 
       {/* How It Works Section */}
-      <div className="bg-gray-50 py-12 px-4 rounded-lg mb-12">
+      <div className="bg-gray-50 py-12 px-4 rounded-lg mb-12 shadow-sm">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">How It Works</h2>
           
           <div className="space-y-8">
-            <div className="flex flex-col md:flex-row gap-6 items-center">
+            <div className="flex flex-col md:flex-row gap-6 items-center animate-slide-in" style={{animationDelay: '0.1s'}}>
               <div className="bg-white p-4 rounded-full h-16 w-16 flex items-center justify-center shadow-md">
                 <span className="text-2xl font-bold text-primary">1</span>
               </div>
@@ -181,7 +185,7 @@ const HomePage = () => {
               </div>
             </div>
             
-            <div className="flex flex-col md:flex-row gap-6 items-center">
+            <div className="flex flex-col md:flex-row gap-6 items-center animate-slide-in" style={{animationDelay: '0.2s'}}>
               <div className="bg-white p-4 rounded-full h-16 w-16 flex items-center justify-center shadow-md">
                 <span className="text-2xl font-bold text-primary">2</span>
               </div>
@@ -194,7 +198,7 @@ const HomePage = () => {
               </div>
             </div>
             
-            <div className="flex flex-col md:flex-row gap-6 items-center">
+            <div className="flex flex-col md:flex-row gap-6 items-center animate-slide-in" style={{animationDelay: '0.3s'}}>
               <div className="bg-white p-4 rounded-full h-16 w-16 flex items-center justify-center shadow-md">
                 <span className="text-2xl font-bold text-primary">3</span>
               </div>
@@ -207,7 +211,7 @@ const HomePage = () => {
               </div>
             </div>
             
-            <div className="flex flex-col md:flex-row gap-6 items-center">
+            <div className="flex flex-col md:flex-row gap-6 items-center animate-slide-in" style={{animationDelay: '0.4s'}}>
               <div className="bg-white p-4 rounded-full h-16 w-16 flex items-center justify-center shadow-md">
                 <span className="text-2xl font-bold text-primary">4</span>
               </div>
@@ -224,27 +228,30 @@ const HomePage = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-primary text-white py-12 px-4 rounded-lg text-center">
+      <div className="bg-primary text-white py-12 px-4 rounded-lg text-center shadow-lg animate-fade-in">
         <div className="max-w-3xl mx-auto">
-          <LifeBuoy className="h-16 w-16 mx-auto mb-4" />
+          <LifeBuoy className="h-16 w-16 mx-auto mb-4 animate-pulse" />
           <h2 className="text-3xl font-bold mb-4">Ready to contribute?</h2>
           <p className="text-xl mb-8">
             Join our network of volunteers and emergency responders to help communities in times of need.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/register">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto">
+              <Button size="lg" variant="secondary" className="w-full sm:w-auto btn-hover">
                 Register Now
               </Button>
             </Link>
             <Link to="/login">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto btn-hover">
                 Login
               </Button>
             </Link>
           </div>
         </div>
       </div>
+      
+      {/* Back to Top Button */}
+      <BackToTop />
     </NavbarLayout>
   );
 };

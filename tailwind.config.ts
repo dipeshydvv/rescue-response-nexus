@@ -19,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -27,7 +30,17 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					50: '#ebf3ff',
+					100: '#d6e7ff',
+					200: '#b3d1ff',
+					300: '#80b3ff',
+					400: '#4d8bff',
+					500: '#1a64ff',
+					600: '#0047e1',
+					700: '#0039b8',
+					800: '#002c8a',
+					900: '#001e5c',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -76,6 +89,12 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'card': '0 4px 8px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)',
+				'card-hover': '0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05)',
+				'button': '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)',
+				'input': '0 1px 2px rgba(0, 0, 0, 0.05)',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -131,6 +150,30 @@ export default {
 					'100%': { 
 						transform: 'rotate(360deg)'
 					}
+				},
+				'progress': {
+					'0%': {
+						width: '0%'
+					},
+					'100%': {
+						width: '100%'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-5px)'
+					}
+				},
+				'pulse': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.5'
+					}
 				}
 			},
 			animation: {
@@ -139,7 +182,15 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out',
 				'zoom-in': 'zoom-in 0.3s ease-out',
-				'spinner': 'spinner 1s linear infinite'
+				'spinner': 'spinner 1s linear infinite',
+				'progress': 'progress 1.5s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'pulse': 'pulse 2s ease-in-out infinite'
+			},
+			gradients: {
+				'blue-gradient': 'linear-gradient(90deg, hsl(220, 100%, 30%), hsl(240, 100%, 40%))',
+				'alert-gradient': 'linear-gradient(90deg, hsl(0, 100%, 60%), hsl(15, 100%, 60%))',
+				'success-gradient': 'linear-gradient(90deg, hsl(120, 100%, 35%), hsl(150, 100%, 40%))',
 			}
 		}
 	},

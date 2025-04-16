@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -111,6 +112,74 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full hover:bg-primary/70 transition-colors;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+  }
+  
+  /* Button hover effects */
+  .btn-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
+  }
+  
+  /* Status badges */
+  .status-badge {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .status-pending {
+    @apply bg-status-pending text-status-pending-foreground status-badge;
+  }
+  
+  .status-in-progress {
+    @apply bg-status-in-progress text-status-in-progress-foreground status-badge;
+  }
+  
+  .status-completed {
+    @apply bg-status-completed text-status-completed-foreground status-badge;
+  }
+  
+  /* Progress bar styling */
+  .progress-bar {
+    @apply h-2 bg-gray-200 rounded-full overflow-hidden;
+  }
+  
+  .progress-bar-fill {
+    @apply h-full bg-primary animate-progress rounded-full;
+  }
+  
+  /* Floating back-to-top button */
+  .back-to-top {
+    @apply fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg 
+           transition-all duration-300 hover:bg-primary-700 hover:shadow-xl 
+           opacity-0 invisible;
+  }
+  
+  .back-to-top.visible {
+    @apply opacity-100 visible;
   }
 }
