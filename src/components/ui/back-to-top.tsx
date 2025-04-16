@@ -29,7 +29,7 @@ const BackToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`back-to-top animate-float ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+      className={`back-to-top animate-float ${isVisible ? 'visible' : ''}`}
       aria-label="Back to top"
     >
       <ArrowUp className="h-5 w-5" />

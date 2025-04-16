@@ -176,10 +176,12 @@
   .back-to-top {
     @apply fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg 
            transition-all duration-300 hover:bg-primary-700 hover:shadow-xl 
-           opacity-0 invisible;
+           opacity-0;
+    visibility: hidden;
   }
   
   .back-to-top.visible {
-    @apply opacity-100 visible;
+    @apply opacity-100;
+    visibility: visible;
   }
 }
